@@ -2,15 +2,9 @@ describe("Airport", function() {
   var airport;
   var plane;
 
-  function BadWeather() {
-  };
-
-  BadWeather.prototype.isStormy = function() {
-    return true;
-  };
-
   beforeEach(function() {
     airport = new Airport();
+    weather = jasmine.createSpyObj('weather', ['isStormy']);
     plane = "Plane";
   });
 
@@ -28,8 +22,12 @@ describe("Airport", function() {
       expect(airport.planes()).not.toContain(plane);
     });
 
+    beforeEach(function(){
+      weather.isStormy.and.returnValue(true);
+    });
+
     it("doesnt allow plane to leave if stormy", function() {
-      airport = new Airport(BadWeather());
+      airport = new Airport(weather);
       airport.land(plane);
       airport.takeOff(plane);
       expect(airport.planes()).toContain(plane);

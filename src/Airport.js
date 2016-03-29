@@ -8,12 +8,15 @@ Airport.prototype.land = function(plane) {
 }
 
 Airport.prototype.planes = function() {
-  // return hanger;
-  return weather.isStormy();
+  return hanger;
+  // return weather.isStormy();
 }
 
 Airport.prototype.takeOff = function(plane) {
-  if (!weather.isStormy()) {
-    hanger.splice((hanger.indexOf(plane)), 1);
+  if (weather.isStormy()) {
+    return hanger[hanger.indexOf(plane)];
+  }
+  else {
+    return hanger.splice((hanger.indexOf(plane)), 1);
   }
 }
