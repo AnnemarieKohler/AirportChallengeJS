@@ -1,5 +1,6 @@
-function Airport() {
+function Airport(weather_class) {
   hanger = new Array();
+  weather = weather_class || (new Weather());
 }
 
 Airport.prototype.land = function(plane) {
@@ -7,9 +8,12 @@ Airport.prototype.land = function(plane) {
 }
 
 Airport.prototype.planes = function() {
-  return hanger;
+  // return hanger;
+  return weather.isStormy();
 }
 
 Airport.prototype.takeOff = function(plane) {
-  hanger.splice((hanger.indexOf(plane)),1);
+  if (!weather.isStormy()) {
+    hanger.splice((hanger.indexOf(plane)), 1);
+  }
 }
