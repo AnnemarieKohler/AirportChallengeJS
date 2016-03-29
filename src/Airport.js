@@ -10,6 +10,6 @@ Airport.prototype.planes = function() {
   return hanger;
 }
 
-Airport.prototype.takeOff = function() {
-  hanger.pop();
+Airport.prototype.takeOff = function(plane) {
+  hanger.splice((hanger.indexOf(plane)),1);
 }
