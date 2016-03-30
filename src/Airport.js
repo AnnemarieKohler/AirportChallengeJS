@@ -2,10 +2,6 @@ function Airport() {
   this.hanger = [];
 }
 
-// Airport.prototype.getHanger = function () {
-//   return this.hanger;
-// };
-
 Airport.prototype.instructLanding = function (plane) {
   this.hanger.push(plane);
 };
